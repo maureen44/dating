@@ -1,0 +1,12 @@
+{
+  "name": "mkariuki/328/dating",
+  "authors": [
+    {
+      "name": "Maureen Kariuki",
+      "email": "mkariuki2@mail.greenriver.edu"
+    }
+  ],
+  "require": {
+    "bcosca/fatfree-core": "dev-master"
+  }
+}
