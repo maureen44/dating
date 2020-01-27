@@ -31,9 +31,9 @@ $f3->route('GET /', function ()
 });
 
 //Define personal information default route
-$f3->route('GET /personalInfo', function () {
+$f3->route('GET /personalinfo', function () {
     $view = new Template();
-    echo $view->render('views/personalinfo.html');
+    echo $view->render('views/information.html');
 });
 
 

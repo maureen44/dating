@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!--Styles.css-->
+    <link rel="stylesheet" href=".//styles/styles.css">
+
+    <title>Personal Information</title>
+</head>
+<body>
+<div class="container">
+    <form method="post" action="profile">
+        <nav class="navbar navbar-light bg-light">
+            <span class="navbar-brand">Cake Lovers Dating Site</span>
+        </nav>
+
+        <h2 class="card-title text-center">Personal Information</h2>
+        <hr>
+        <div class="row" >
+            <div class="column">
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input type="text" class="form-control" id="firstName">
+                </div>
+                    <br>
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" class="form-control" id="lastName">
+                </div>
+                    <br>
+                <div class="form-group">
+                    <label for="age">Age</label>
+                    <input type="text" class="form-control" id="age">
+                </div>
+                    <br>
+                <div class="form-group">
+                    <label class="font-weight-bolder"> Gender</label>
+                    <br>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="gender" id="male" value="male">
+                        <label class="form-check-label" for="male" id="placer1">Male</label>
+                        <input class="form-check-input" type="radio" name="gender" id="female" value="female">
+                        <label class="form-check-label" for="female" id="placer2">Female</label>
+                    </div>
+                </div>
+                    <br>
+                 <div class="form-group">
+                     <label for="phoneNumber">Phone Number</label>
+                     <input type="number" class="form-control" id="phoneNumber">
+                 </div>
+                    <br>
+                  <div class="form-group">
+                    <button class="btn-primary" type="submit">Next>></button>
+                    <br>
+                </div>
+
+            </div>
+            <div class="column">
+                <textarea class="form-control text-muted" id="policy" rows="5" >
+                    Note:
+                    All information entered is protected by our privacy
+                    Policy Profile information can only be viewed by
+                    others with you permission.
+                </textarea>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

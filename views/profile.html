@@ -1,55 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Profile</title>
 </head>
 <body>
+<div class="container">
     <form method="post" action="interests">
         <nav class="navbar navbar-light bg-light">
             <span class="navbar-brand">Cake Lovers Dating Site</span>
         </nav>
-        <div class="card" >
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <div class="row-cols-lg-10">
-                            <label for="email">Email</label>
-                            <input type="email" class="form-control" id="email" placeholder="my_email@gmail.com">
-                        </div>
-                        <div>
+        <h2 class="card-title text-center">Profile</h2>
+        <hr>
+        <div class="row">
+            <div class="column">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <br>
+                    <input type="email" class="form-control" id="email" placeholder="my_email@gmail.com">
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="state" id="state">State</label>
+                    <br>
+                    <select name="state">
+                        <option value="Washington">Washington</option>
+                        <option value="Oregon">Oregon</option>
+                        <option value="California">California</option>
+                    </select>
+                </div>
+                <br>
+                <div class="form-group">
+                    <div class="form-check form-check-inline">
+                        <label for="seeking" id="seeking">Seeking</label>
+                        <br>
+                        <input class="form-check-input" type="radio" name="gender" id="male" value="male">
+                        <label class="form-check-label" for="male">Male</label>
 
-                        </div>
-                        <div>
-                            <label for="state" id="state">State</label>
-                            <select name="state">
-                                <option value="Washington">Washington</option>
-                                <option value="Oregon">Oregon</option>
-                                <option value="California">California</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="seeking" id="seeking">Seeking</label>
-
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="gender" id="male" value="male">
-                                <label class="form-check-label" for="male">Male</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="gender" id="female" value="famale">
-                                <label class="form-check-label" for="female">Female</label>
-                            </div>
-                        </div>
-                        <div>
-                            <button type="submit">Next>></button>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-
+                        <input class="form-check-input" type="radio" name="gender" id="female" value="female">
+                        <label class="form-check-label" for="female">Female</label>
                     </div>
                 </div>
+                 <br>
+                <div class="form-group">
+                    <button class="btn-primary" type="submit">Next>></button>
+                    <br>
+                </div>
+            </div>
+
+            <div class="column">
+                <textarea class="form-control" id="notice" rows="5"></textarea>
+                <label for="notice">Biography</label>
+
+
             </div>
         </div>
     </form>
+</div>
 </body>
 </html>
