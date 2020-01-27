@@ -19,12 +19,46 @@ require ("vendor/autoload.php");
 //instantiate Fat-free
 $f3 = Base::instance();
 
+//start session
+session_start();
+
 //default route
 $f3->route('GET /', function ()
 {
     $view = new Template();
     echo $view->render('views/home.html');
-   // echo "Cake Lovers Dating!";
+
+});
+
+//Define personal information default route
+$f3->route('GET /personalInfo', function () {
+    $view = new Template();
+    echo $view->render('views/personalinfo.html');
+});
+
+
+//default profile route
+$f3->route('GET /profile', function ()
+{
+    $_SESSION['firstName'] = $_POST['firstName'];
+    $_SESSION['lastName'] = $_POST['lastName'];
+    $_SESSION['age'] = $_POST['age'];
+    $_SESSION['gender'] = $_POST['gender'];
+    $_SESSION['phoneNumber'] = $_POST['phoneNumber'];
+    $view = new Template();
+    echo $view->render('views/profile.html');
+});
+
+//default interests route
+$f3->route('GET /interests', function ()
+{
+    $_SESSION['email'] = $_POST['email'];
+    $_SESSION['state'] = $_POST['state'];
+    $_SESSION['seeking'] = $_POST['seeking'];
+    $_SESSION['input'] = $_POST['input'];
+    $view = new Template();
+    echo $view->render('views/interests.html');
+    // echo "Cake Lovers Dating!";
 });
 
 //run fat free
