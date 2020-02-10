@@ -33,10 +33,12 @@ $f3->set('gender', array('male', 'female'));
 $f3->set('states', array('washington', 'oregon', 'california'));
 
 //define array for indoor interests
-$f3->set('indoors', array('tv', 'puzzle', 'movies', 'reading', 'cooking', 'playing cards', 'board games', 'video games'));
+$f3->set('indoors', array('tv', 'puzzle', 'movies', 'reading',
+    'cooking', 'playing cards', 'board games', 'video games'));
 
 //define array for outdoor interests
-$f3->set('outdoors', array('hiking', 'walking', 'biking', 'climbing', 'swimming', 'collecting stones'));
+$f3->set('outdoors', array('hiking', 'walking', 'biking',
+    'climbing', 'swimming', 'collecting stones'));
 
 
 //default route
@@ -108,7 +110,7 @@ $f3->route('GET|POST /profile', function ($f3)
         $f3->set('notice', $notice);
 
          //If data is valid
-        if (validForm()) {
+        if (validProfileForm()) {
 
             //Write data to Session
             $_SESSION['email'] = $email;
@@ -136,19 +138,23 @@ $f3->route('GET|POST /interests', function ($f3)
 
         //get data from indoor
         if (!empty($_POST['indoors'])) {
-            $selectedIndoors = $_POST['indoors'];
+            foreach ( $_POST['indoors'] as $value) {
+                array_push($selectedIndoors, $value);
+            }
         }
 
         //get data from outdoor
         if (!empty($_POST['outdoors'])) {
-            $selectedOutdoors = $_POST['outdoors'];
+            foreach ( $_POST['outdoors'] as $value) {
+                array_push($selectedOutdoors, $value);
+            }
         }
 
         //Add data to hive
-        $f3->set('in-interests', $selectedIndoors);
-        $f3->set('out-interests', $selectedOutdoors);
+        $f3->set('inInterests', $selectedIndoors);
+        $f3->set('outInterests', $selectedOutdoors);
 
-        if (validForm()) {
+        if (validInterests()) {
             $_SESSION['indoors'] = $selectedIndoors;
             $_SESSION['outdoors'] = $selectedOutdoors;
 
@@ -162,23 +168,15 @@ $f3->route('GET|POST /interests', function ($f3)
     // echo "Cake Lovers Dating!";
 });
 
-//default summary route
-$f3->route('GET /summary', function ()
-{
-    $interest = $_POST['interests'];
-    if (!empty($interest))
-    {
-        foreach ($interest as $hobbies) {
-            $_SESSION['interests'] .= $hobbies ." ";
-        }
-    }
+//Define a summary route
+$f3->route('GET /summary', function() {
 
+    //Display summary
     $view = new Template();
     echo $view->render('views/summary.html');
-    session_destroy();
 });
 
 
 //run fat free
 $f3->run();
-?>
+

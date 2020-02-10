@@ -28,20 +28,6 @@ function validForm()
         $isValid = false;
         $f3->set("errors['phoneNumber']", "Please enter a phone number");
     }
-    if (!validEmail($f3->get('email'))) {
-        $isValid = false;
-        $f3->set("errors['email']", "Please enter an email address");
-    }
-    if (!validIndoor($f3->get('indoorss'))) {
-        $isValid = false;
-        $f3->set("errors['indoors']", "Please select indoor interests");
-    }
-
-    if (!validOutdoor($f3->get('outdoors'))) {
-        $isValid = false;
-        $f3->set("errors['outdoors']", "Please select outdoor interests");
-    }
-
     return $isValid;
 }
 
@@ -103,7 +89,15 @@ function validPhone($phoneNumber) {
         return false;
     }
 }
-
+function validProfileForm() {
+    global $f3;
+    $isValidProfile = true;
+    if (!validEmail($f3->get('email'))) {
+        $isValidProfile = false;
+        $f3->set("errors['email']", "Please enter an email address");
+    }
+    return $isValidProfile;
+}
 /**
  * validates the email address entered
  * @param $email
@@ -119,6 +113,21 @@ function validEmail($email) {
     }
 }
 
+function validInterests() {
+    global $f3;
+    $isValidInterests = true;
+
+    if (!validIndoor($f3->get('inInterests'))) {
+        $isValid = false;
+        $f3->set("errors['indoors']", "Please select indoor interests");
+    }
+
+    if (!validOutdoor($f3->get('outInterests'))) {
+        $isValid = false;
+        $f3->set("errors['outdoors']", "Please select outdoor interests");
+    }
+    return $isValidInterests;
+}
 /**
  * validating indoor interests
  * @param $in_interests
@@ -127,23 +136,33 @@ function validEmail($email) {
  */
 function validIndoor($in_interests) {
     global $f3;
-    return true;
-    /*if (!empty($in_interests)) {
+    if (!empty($indoors)) {
         return true;
     } else {
         return false;
     }
-    foreach ($in_interests as $indoor) {
-        if (in_array($indoor, $f3->get('in-interests'))) {
+    foreach ($indoors as $indoor) {
+        if (in_array($indoor, $f3->get('indoors'))) {
             return true;
         } else {
             return false;
         }
-    }*/
+    }
 
 }
 
-function validOutdoor($out_interests) {
+function validOutdoor($outdoors) {
     global $f3;
-    return true;
+    if (!empty($outdoors)) {
+        return true;
+    } else {
+        return false;
+    }
+    foreach ($outdoors as $outdoor) {
+        if (in_array($outdoor, $f3->get('outdoors'))) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
