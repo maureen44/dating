@@ -2,11 +2,20 @@
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!--Styles.css-->
+    <link rel="stylesheet" href=".//styles/styles.css">
+
     <title>Profile</title>
 </head>
 <body>
 <div class="container">
-    <form method="post" action="interests">
+    <form method="post" action="#">
         <nav class="navbar navbar-light bg-light">
             <span class="navbar-brand">Cake Lovers Dating Site</span>
         </nav>
@@ -17,7 +26,7 @@
                 <div class="form-group">
                     <label for="email">Email</label>
                     <br>
-                    <input type="email" class="form-control" id="email" placeholder="my_email@gmail.com">
+                    <input type="email" class="form-control" id="email" placeholder="my_email@gmail.com" name="email">
                 </div>
                 <br>
                 <div class="form-group">
@@ -31,9 +40,10 @@
                 </div>
                 <br>
                 <div class="form-group">
+                    <label class="font-weight-bold" id="seeking">Seeking</label>
+                    <br>
                     <div class="form-check form-check-inline">
-                        <label for="seeking" id="seeking">Seeking</label>
-                        <br>
+
                         <input class="form-check-input" type="radio" name="gender" id="male" value="male">
                         <label class="form-check-label" for="male">Male</label>
 
@@ -47,9 +57,8 @@
                     <br>
                 </div>
             </div>
-
             <div class="column">
-                <textarea class="form-control" id="notice" rows="5"></textarea>
+                <textarea class="form-control" id="notice" name="notice" rows="5"></textarea>
                 <label for="notice">Biography</label>
 
 

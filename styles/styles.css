@@ -11,3 +11,6 @@ img {
     width: 50%;
     padding: 10px;
 }
+#seeking {
+    font-weight: bold;
+}

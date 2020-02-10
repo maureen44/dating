@@ -2,10 +2,60 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!--Styles.css-->
+    <link rel="stylesheet" href=".//styles/styles.css">
     <title>Summary</title>
 </head>
 <body>
-    <h1>Summary</h1>
-    <h2>Your date {{ @SESSION.firstName }} for {{ @SESSION.lastName }}</h2>
+<div class="container">
+
+        <nav class="navbar navbar-light bg-light">
+            <span class="navbar-brand">Cake Lovers Dating Site</span>
+        </nav>
+        <h2 class="card-title text-center">Summary</h2>
+        <hr>
+        <div class="row">
+            <div class="column">
+                <h5>Your date information </h5>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>Name: {{ @SESSION.firstName }} {{ @SESSION.lastName }}</td>
+                        </tr>
+                        <tr>
+                            <td>Age: {{ @SESSION.age }} </td>
+                        </tr>
+                        <tr>
+                            <td>Gender: {{ @SESSION.gender }}</td>
+                        </tr>
+                        <tr>
+                            <td>Phone Number: {{ @SESSION.phoneNumber }}</td>
+                        </tr>
+                        <tr>
+                            <td>Email: {{ @SESSION.email }}</td>
+                        </tr>
+                        <tr>
+                            <td>State: {{ @SESSION.state }}</td>
+                        </tr>
+                        <tr>
+                            <td>Seeking: {{ @SESSION.gender }}</td>
+                        </tr>
+                    <tr>
+                        <td>Interests: {{ @SESSION.interests }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="column">
+                <img class="rounded" src=".//images/pic.png" alt="image">
+                <br>
+                <p>Biography: {{ @SESSION.notice }}</p>
+            </div>
+        </div>
+
+</div>
 </body>
 </html>
