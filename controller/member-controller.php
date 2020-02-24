@@ -8,7 +8,7 @@ class MemberController
      * MemberController constructor.
      * @param $f3
      */
-    function __construct($f3)
+    public function __construct($f3)
     {
         $this->_f3 = $f3;
     }
@@ -63,7 +63,7 @@ class MemberController
 
     }
 
-    function profile()
+    public function profile()
     {
         //If form has been submitted, validate
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -101,6 +101,55 @@ class MemberController
         }
         $view = new Template();
         echo $view->render('views/profile.html');
+    }
+
+    public function interests()
+    {
+        $selectedIndoors = array();
+        $selectedOutdoors = array();
+
+        //If form has been submitted, validate
+        if($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            //get data from indoor
+            if (!empty($_POST['indoors'])) {
+                foreach ( $_POST['indoors'] as $value) {
+                    array_push($selectedIndoors, $value);
+                }
+            }
+
+            //get data from outdoor
+            if (!empty($_POST['outdoors'])) {
+                foreach ( $_POST['outdoors'] as $value) {
+                    array_push($selectedOutdoors, $value);
+                }
+            }
+
+            //Add data to hive
+            $this->_f3->set('inInterests', $selectedIndoors);
+            $this->_f3->set('outInterests', $selectedOutdoors);
+
+            if (validInterests()) {
+                $_SESSION['indoor'] = $selectedIndoors;
+                $_SESSION['outdoor'] = $selectedOutdoors;
+                $_SESSION['Member']->setIndoorInterests($selectedIndoors);
+                $_SESSION['Member']->setOutdoorInterests($selectedOutdoors);
+
+                //Redirect to Summary
+                $this->_f3->reroute('/summary');
+            }
+
+        }
+        $view = new Template();
+        echo $view->render('views/interests.html');
+        // echo "Cake Lovers Dating!";
+    }
+
+    public function summary()
+    {
+        //Display summary
+        $view = new Template();
+        echo $view->render('views/summary.html');
     }
 
 }
