@@ -61,56 +61,19 @@ $f3->route('GET|POST /information', function ($f3)
 $f3->route('GET|POST /profile', function ($f3)
 {
 
-
+    $GLOBALS['controller']->profile();
 });
 
 //default interests route
 $f3->route('GET|POST /interests', function ($f3)
 {
-    $selectedIndoors = array();
-    $selectedOutdoors = array();
-
-    //If form has been submitted, validate
-    if($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-        //get data from indoor
-        if (!empty($_POST['indoors'])) {
-            foreach ( $_POST['indoors'] as $value) {
-                array_push($selectedIndoors, $value);
-            }
-        }
-
-        //get data from outdoor
-        if (!empty($_POST['outdoors'])) {
-            foreach ( $_POST['outdoors'] as $value) {
-                array_push($selectedOutdoors, $value);
-            }
-        }
-
-        //Add data to hive
-        $f3->set('inInterests', $selectedIndoors);
-        $f3->set('outInterests', $selectedOutdoors);
-
-        if (validInterests()) {
-            $_SESSION['indoors'] = $selectedIndoors;
-            $_SESSION['outdoors'] = $selectedOutdoors;
-
-            //Redirect to Summary
-            $f3->reroute('/summary');
-        }
-
-    }
-    $view = new Template();
-    echo $view->render('views/interests.html');
-    // echo "Cake Lovers Dating!";
+    $GLOBALS['controller']->interests();
 });
 
 //Define a summary route
 $f3->route('GET /summary', function() {
 
-    //Display summary
-    $view = new Template();
-    echo $view->render('views/summary.html');
+    $GLOBALS['controller']->summary();
 });
 
 
