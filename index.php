@@ -9,9 +9,6 @@
  * is run.
  */
 
-//start session
-session_start();
-
 //Turn on error reporting -- this is critical
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
@@ -20,6 +17,9 @@ error_reporting(E_ALL);
 require ("vendor/autoload.php");
 require_once('model/dating-validations.php');
 
+//start session
+session_start();
+
 //instantiate Fat-free
 $f3 = Base::instance();
 
@@ -27,7 +27,7 @@ $f3 = Base::instance();
 $f3->set('DEBUG', 3);
 
 //define array for gender
-$f3->set('gender', array('male', 'female'));
+$f3->set('genders', array('male', 'female'));
 
 //define array for states
 $f3->set('states', array('washington', 'oregon', 'california'));
@@ -44,49 +44,16 @@ $f3->set('outdoors', array('hiking', 'walking', 'biking',
 //default route
 $f3->route('GET /', function ()
 {
-    $view = new Template();
-    echo $view->render('views/home.html');
+    $GLOBALS['controller']->home();
 
 });
 
 //Define personal information default route
 $f3->route('GET|POST /information', function ($f3)
 {
-   //If form has been submitted, validate
-    if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-        //Get data from form
-        $firstName = $_POST['firstName'];
-        $lastName = $_POST['lastName'];
-        $age = $_POST['age'];
-        $phoneNumber = $_POST['phoneNumber'];
-        $gender = $_POST['gender'];
+    $GLOBALS['controller']->information();
 
-        //Add data to hive
-        $f3->set('firstName', $firstName);
-        $f3->set('lastName', $lastName);
-        $f3->set('age', $age);
-        $f3->set('phoneNumber', $phoneNumber);
-        $f3->set('gender', $gender);
-
-        //If data is valid
-        if (validForm()) {
-
-            //Write data to Session
-            $_SESSION['firstName'] = $firstName;
-            $_SESSION['lastName'] = $lastName;
-            $_SESSION['age'] = $age;
-            $_SESSION['phoneNumber'] = $phoneNumber;
-            $_SESSION['gender'] = $gender;
-
-            //redirect to profile page
-            $f3->reroute('/profile');
-        }
-
-    }
-
-    $view = new Template();
-    echo $view->render('views/information.html');
 });
 
 
@@ -94,37 +61,7 @@ $f3->route('GET|POST /information', function ($f3)
 $f3->route('GET|POST /profile', function ($f3)
 {
 
-    //If form has been submitted, validate
-    if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-        //Get data from form
-        $email = $_POST['email'];
-        $state = $_POST['state'];
-        $gender = $_POST['gender'];
-        $notice = $_POST['notice'];
-
-        //Add data to hive
-        $f3->set('email', $email);
-        $f3->set('state', $state);
-        $f3->set('gender', $gender);
-        $f3->set('notice', $notice);
-
-         //If data is valid
-        if (validProfileForm()) {
-
-            //Write data to Session
-            $_SESSION['email'] = $email;
-            $_SESSION['state'] = $state;
-            $_SESSION['gender'] = $gender;
-            $_SESSION['notice'] = $notice;
-
-            //redirect to interests page
-            $f3->reroute('/interests');
-        }
-
-    }
-    $view = new Template();
-    echo $view->render('views/profile.html');
 });
 
 //default interests route

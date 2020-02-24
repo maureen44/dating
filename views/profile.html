@@ -50,8 +50,8 @@
                     <label class="font-weight-bold" id="seeking">Seeking</label>
                     <br>
                     <div class="form-check form-check-inline">
-                        <repeat group="{{ @gender }}" value="{{ @seekingOption }}">
-                            <label><input class="form-check-input" type="radio" name="gender" value="{{ @seekingOption }}"
+                        <repeat group="{{ @genders }}" value="{{ @seekingOption }}">
+                            <label><input class="form-check-input" type="radio" name="seekGender" value="{{ @seekingOption }}"
                                 <check if="{{ @seeking == @seekingOption }}">
                                     checked="checked"
                                 </check>
@@ -60,17 +60,17 @@
                         </repeat>
                     </div>
                 </div>
-                 <br>
+            </div>
+            <div class="column">
+                <div>
+                    <label for="notice">Biography</label>
+                    <textarea class="form-control" id="notice" name="notice" rows="5"></textarea>
+                </div>
+                <br>
                 <div class="form-group">
                     <button class="btn-primary" type="submit">Next>></button>
                     <br>
                 </div>
-            </div>
-            <div class="column">
-                <textarea class="form-control" id="notice" name="notice" rows="5"></textarea>
-                <label for="notice">Biography</label>
-
-
             </div>
         </div>
     </form>
