@@ -57,13 +57,13 @@
                         </repeat>
                     </div>
                 </div>
-                 <div class="form-group">
+                <div class="form-group">
                      <label for="phoneNumber">Phone Number</label>
                      <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber" value="{{ @phoneNumber }}">
                      <check if="{{ @errors['phoneNumber'] }}">
                          <span class="err">{{ @errors['phoneNumber'] }}</span>
                      </check><br><br>
-                 </div>
+                </div>
                 <div>
                     <label><strong>Premium Membership</strong></label><br>
                         <input type="checkbox" name="checkbox">Sign up for a Premium Account!
@@ -71,12 +71,12 @@
             </div>
             <div class="column">
                 <div>
-                <textarea class="form-control text-muted" id="policy" rows="5" name="policy">
-                    Note:
-                    All information entered is protected by our privacy
-                    Policy Profile information can only be viewed by
-                    others with you permission.
-                </textarea>
+                    <textarea class="form-control text-muted" id="policy" rows="5" name="policy">
+                        Note:
+                        All information entered is protected by our privacy
+                        Policy Profile information can only be viewed by
+                        others with you permission.
+                    </textarea>
                 </div>
                 <br>
                 <br>

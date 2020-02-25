@@ -22,6 +22,7 @@ session_start();
 
 //instantiate Fat-free
 $f3 = Base::instance();
+$controller = new MemberController($f3);
 
 //set debug level
 $f3->set('DEBUG', 3);
@@ -71,9 +72,11 @@ $f3->route('GET|POST /interests', function ($f3)
 });
 
 //Define a summary route
-$f3->route('GET /summary', function() {
+$f3->route('GET /summary', function($f3) {
 
     $GLOBALS['controller']->summary();
+    session_destroy();
+    $_SESSION = array();
 });
 
 

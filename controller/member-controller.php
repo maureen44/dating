@@ -8,17 +8,18 @@ class MemberController
      * MemberController constructor.
      * @param $f3
      */
-    public function __construct($f3)
+    function __construct($f3)
     {
         $this->_f3 = $f3;
     }
 
-    public function home() {
+    function home()
+    {
         $view = new Template();
         echo $view->render('views/home.html');
     }
 
-    public function information()
+    function information()
     {
         //If form has been submitted, validate
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -30,7 +31,6 @@ class MemberController
             $gender = $_POST['gender'];
             $phoneNumber = $_POST['phoneNumber'];
 
-
             //Add data to hive
             $this->_f3->set('firstName', $firstName);
             $this->_f3->set('lastName', $lastName);
@@ -38,6 +38,7 @@ class MemberController
             $this->_f3->set('gender', $gender);
             $this->_f3->set('phoneNumber', $phoneNumber);
             $this->_f3->set('checkbox1', checkbox);
+
 
             $checkbox1 = isset($_POST['checkbox']);
             $_SESSION['checkbox'] = $checkbox1;
@@ -52,18 +53,17 @@ class MemberController
 
                 //Write data to Session
                 $_SESSION['Member'] = $member;
-
-
                 //redirect to profile page
-                $this->f3->reroute('/profile');
+                $this->_f3->reroute('/profile');
             }
-            $view = new Template();
-            echo $view->render('views/information.html');
+
         }
+        $view = new Template();
+        echo $view->render('views/information.html');
 
     }
 
-    public function profile()
+    function profile()
     {
         //If form has been submitted, validate
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -103,7 +103,7 @@ class MemberController
         echo $view->render('views/profile.html');
     }
 
-    public function interests()
+    function interests()
     {
         $selectedIndoors = array();
         $selectedOutdoors = array();
@@ -132,8 +132,8 @@ class MemberController
             if (validInterests()) {
                 $_SESSION['indoor'] = $selectedIndoors;
                 $_SESSION['outdoor'] = $selectedOutdoors;
-                $_SESSION['Member']->setIndoorInterests($selectedIndoors);
-                $_SESSION['Member']->setOutdoorInterests($selectedOutdoors);
+                $_SESSION['Member']->setInDoorInterests($selectedIndoors);
+                $_SESSION['Member']->setOutDoorInterests($selectedOutdoors);
 
                 //Redirect to Summary
                 $this->_f3->reroute('/summary');
@@ -145,7 +145,7 @@ class MemberController
         // echo "Cake Lovers Dating!";
     }
 
-    public function summary()
+    function summary()
     {
         //Display summary
         $view = new Template();

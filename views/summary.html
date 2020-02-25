@@ -23,28 +23,33 @@
                 <table>
                     <tbody>
                         <tr>
-                            <td>Name: {{ @SESSION.firstName }} {{ @SESSION.lastName }}</td>
+                            <td>Name: {{ (@SESSION['Member']->getFname()) }} {{ (@SESSION['Member']->getLname()) }}</td>
                         </tr>
                         <tr>
-                            <td>Age: {{ @SESSION.age }} </td>
+                            <td>Age: {{ (@SESSION['Member']->getAge()) }} </td>
                         </tr>
                         <tr>
-                            <td>Gender: {{ @SESSION.gender }}</td>
+                            <td>Gender: {{ (@SESSION['Member']->getGender()) }}</td>
                         </tr>
                         <tr>
-                            <td>Phone Number: {{ @SESSION.phoneNumber }}</td>
+                            <td>Phone Number: {{ (@SESSION['Member']->getPhone()) }}</td>
                         </tr>
                         <tr>
-                            <td>Email: {{ @SESSION.email }}</td>
+                            <td>Email: {{ (@SESSION['Member']->getEmail()) }}</td>
                         </tr>
                         <tr>
-                            <td>State: {{ @SESSION.state }}</td>
+                            <td>State: {{ (@SESSION['Member']->getState()) }}</td>
                         </tr>
                         <tr>
-                            <td>Seeking: {{ @SESSION.gender }}</td>
+                            <td>Seeking: {{ (@SESSION['Member']->getSeeking()) }}</td>
                         </tr>
                     <tr>
-                        <td>Interests: {{ implode(", ", @SESSION.indoors) }}, {{ implode(", ", @SESSION.outdoors) }}</td>
+                        <check if="{{ @SESSION['Member'] instanceof PremiumMember}}" >
+                            <true>
+                                <td>Interests: {{ implode(", ",@SESSION['Member']->getInDoorInterests()) }}</td>
+                                <td>Interests: {{ implode(", ", @SESSION['Member']->getOutDoorInterests()) }}</td>
+                            </true>
+                        </check>
                     </tr>
                     </tbody>
                 </table>
@@ -52,7 +57,7 @@
             <div class="column">
                 <img class="rounded" src=".//images/pic.png" alt="image">
                 <br>
-                <p>Biography: {{ @SESSION.notice }}</p>
+                <p>Biography: {{ @SESSION['Member']->getBio() }}</p>
             </div>
         </div>
 
