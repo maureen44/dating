@@ -40,19 +40,20 @@ class MemberController
             $this->_f3->set('gender', $gender);
             $this->_f3->set('phoneNumber', $phoneNumber);
             $this->_f3->set('checkbox1', checkbox);
-            if ($_SESSION['checkbox'] == 1) {
-                $this->_f3->set('imageUpload', $image);
-            }
+            $this->_f3->set('imageUpload', $image);
+
 
 
             $checkbox1 = isset($_POST['checkbox']);
             $_SESSION['checkbox'] = $checkbox1;
 
             if (isset($_POST['checkbox'])) {
+
                 $member = new PremiumMember($firstName, $lastName, $age, $gender, $phoneNumber, $image);
             } else {
-                $member = new Member($firstName, $lastName, $age, $gender, $phoneNumber);
+                $member = new Member($firstName, $lastName, $age, $gender, $phoneNumber, $image);
             }
+
             //If data is valid
             if (validForm()) {
 
@@ -150,12 +151,32 @@ class MemberController
         // echo "Cake Lovers Dating!";
     }
 
+    public function detail($member_id)
+    {
+
+        $member = $GLOBALS['db']->getMember($member_id);
+
+        //Add the member object to the hive, and display the view
+        $this->_f3->set('member', $member);
+        $template = new Template();
+        echo $template->render('views/member-detail.html');
+    }
+
     function summary($db, $member)
     {
         $db->insertMember($member);
         //Display summary
         $view = new Template();
         echo $view->render('views/summary.html');
+    }
+
+    function admin()
+    {
+        $members = $GLOBALS['db']->getMembers();
+
+        $this->_f3->set('members', $members);
+        $view = new Template();
+        echo $view->render('views/member.html');
     }
 
 }

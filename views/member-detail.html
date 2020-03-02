@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Member Detail</title>
+    <link rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >
+</head>
+<body>
+
+<div class="container">
+    <h1>Cake Lovers Member Detail</h1>
+
+    <p>Member ID: {{ @member['member_id'] }}</p>
+    <p>Name: {{ @member['lname'] }}, {{ @member['fname'] }}</p>
+    <p>Age: {{ @member['age'] }}</p>
+    <p>Phone: {{ @member['phone'] }}</p>
+    <p>Email: {{ @member['email'] }}</p>
+    <p>State: {{ @member['state'] }}</p>
+    <p>Gender: {{ @member['gender'] }}</p>
+    <p>Seeking: {{ @member['seeking'] }}</p>
+    <p>Premium: {{ @member['premium'] }}</p>
+    <p>Interest: {{ @member['interest'] }}</p>
+
+    <a href="{{ @BASE }}/member.html">Back to List</a>
+</div>
+
+</body>
+</html>

@@ -62,19 +62,19 @@ class DatingDatabase
         return $result;
     }
 
-    function getIntersts($interest_id)
+    function getIntersts($member_id)
     {
         //1. Define the query
         $sql = "SELECT * 
-                FROM interest, member_interest
-                WHERE interest.interest_id = member_interest.interest_id
-                AND interest_id = :interest_id";
+                FROM interest, member
+                WHERE interest.member_id = member.member_id
+                AND member_id = :member_id";
 
         //2. Prepare the statement
         $statement = $this->_dbh->prepare($sql);
 
         //3. Bind the parameter
-        $statement->bindParam(':interest_id', $interest_id);
+        $statement->bindParam(':member_id', $member_id);
         //4. Execute the statement
         $statement->execute();
 

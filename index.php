@@ -50,10 +50,21 @@ $f3->set('outdoors', array('hiking', 'walking', 'biking',
 
 
 //default route
-$f3->route('GET /', function ()
+$f3->route('GET /', function ($f3)
 {
     $GLOBALS['controller']->home();
 
+});
+
+//Define a route that displays member detail
+$f3->route('GET /detail/@member_id', function($f3, $params){
+
+    $GLOBALS['controller']->detail($params['member_id']);
+});
+
+//Define a route that displays the admin page
+$f3->route('GET /member.html', function ($f3) {
+    $GLOBALS['controller']->admin();
 });
 
 //Define personal information default route
