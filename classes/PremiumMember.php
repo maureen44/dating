@@ -4,6 +4,7 @@ class PremiumMember extends Member
 {
     private $_inDoorInterests;
     private $_outDoorInterests;
+    private $_imageUpload;
 
     /**
      * PremiumMember constructor.
@@ -15,7 +16,7 @@ class PremiumMember extends Member
      * @param $inDoorInterests
      * @param $outDoorInterests
      */
-    public function __construct($fname, $lname, $age, $gender, $phone, $inDoorInterests = "?", $outDoorInterests = "?")
+    public function __construct($fname, $lname, $age, $gender, $phone, $image, $inDoorInterests = "?", $outDoorInterests = "?")
     {
         parent::__construct($fname, $lname, $age, $gender, $phone);
         $this->_inDoorInterests = $inDoorInterests;

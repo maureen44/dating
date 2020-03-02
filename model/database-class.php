@@ -1,12 +1,5 @@
 <?php
 require_once ("config-dating.php");
-
-/**
- * Class DatingDatabase
- *
- */
-
-
 class DatingDatabase
 {
     //Connection object or PDO object
@@ -24,10 +17,71 @@ class DatingDatabase
         }
     }
 
-    /*function connect()
+    function connect()
     {
 
-    }*/
+    }
+
+    function getMembers()
+    {
+        //1. Define the query
+        $sql = "SELECT * FROM member
+                ORDER BY lname, fname ASC";
+
+        //2. Prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+        //3. Bind the parameter
+
+        //4. Execute the statement
+        $statement->execute();
+
+        //5. Get the result
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    function getMember($member_id)
+    {
+        //1. Define the query
+        $sql = "SELECT * 
+                FROM member, member_interest
+                WHERE member.member_id = member_interest.member_id
+                AND member_id = :member_id";
+
+        //2. Prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+        //3. Bind the parameter
+        $statement->bindParam(':member_id', $member_id);
+        //4. Execute the statement
+        $statement->execute();
+
+        //5. Get the result
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    function getIntersts($interest_id)
+    {
+        //1. Define the query
+        $sql = "SELECT * 
+                FROM interest, member_interest
+                WHERE interest.interest_id = member_interest.interest_id
+                AND interest_id = :interest_id";
+
+        //2. Prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+        //3. Bind the parameter
+        $statement->bindParam(':interest_id', $interest_id);
+        //4. Execute the statement
+        $statement->execute();
+
+        //5. Get the result
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
 
     function insertMember($member)
     {
@@ -49,7 +103,7 @@ class DatingDatabase
         $statement->bindParam(':seeking', $member->getSeeking());
         $statement->bindParam(':bio', $member->getBio());
         $statement->bindParam(':premium', $member->getPremium());
-        $statement->bindParam(':image', $member->getImage());
+        //$statement->bindParam(':image', $member->getImage());
 
 
 
@@ -60,37 +114,5 @@ class DatingDatabase
         $id = $this->_dbh->lastInsertId();
     }
 
-
-    function getMembers()
-    {
-        //1. Define the query
-        $sql = "SELECT * FROM member
-                ORDER BY fname, lname,
-                 age, gender, phone, 
-                 email, state, seeking, 
-                 bio, premium, image";
-
-        //2. Prepare the statement
-        $statement = $this->_dbh->prepare($sql);
-
-        //3. Bind the parameter
-
-        //4. Execute the statement
-        $statement->execute();
-
-        //5. Get the result
-        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-        return $result;
-    }
-
-    function getMember($member_id)
-    {
-
-    }
-
-    function getIntersts($member_id)
-    {
-
-    }
 
 }

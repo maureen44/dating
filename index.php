@@ -23,10 +23,16 @@ session_start();
 
 //instantiate Fat-free
 $f3 = Base::instance();
-$controller = new MemberController($f3);
+
 
 //set debug level
 $f3->set('DEBUG', 3);
+
+//define controller
+$controller = new MemberController($f3);
+
+//define database
+$db = new DatingDatabase();
 
 //define array for gender
 $f3->set('genders', array('male', 'female'));
@@ -75,7 +81,11 @@ $f3->route('GET|POST /interests', function ($f3)
 //Define a summary route
 $f3->route('GET /summary', function($f3) {
 
-    $GLOBALS['controller']->summary();
+    global $db;
+    global $controller;
+    $controller->add($db, $_SESSION['Member']);
+   /* $GLOBALS['controller']->summary();*/
+
     session_destroy();
     $_SESSION = array();
 });

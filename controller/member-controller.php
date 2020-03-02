@@ -15,6 +15,7 @@ class MemberController
 
     function home()
     {
+
         $view = new Template();
         echo $view->render('views/home.html');
     }
@@ -30,6 +31,7 @@ class MemberController
             $age = $_POST['age'];
             $gender = $_POST['gender'];
             $phoneNumber = $_POST['phoneNumber'];
+            $image = $_POST['imageUpload'];
 
             //Add data to hive
             $this->_f3->set('firstName', $firstName);
@@ -38,13 +40,14 @@ class MemberController
             $this->_f3->set('gender', $gender);
             $this->_f3->set('phoneNumber', $phoneNumber);
             $this->_f3->set('checkbox1', checkbox);
+            $this->_f3->set('imageUpload', $image);
 
 
             $checkbox1 = isset($_POST['checkbox']);
             $_SESSION['checkbox'] = $checkbox1;
 
             if (isset($_POST['checkbox'])) {
-                $member = new PremiumMember($firstName, $lastName, $age, $gender, $phoneNumber);
+                $member = new PremiumMember($firstName, $lastName, $age, $gender, $phoneNumber, $image);
             } else {
                 $member = new Member($firstName, $lastName, $age, $gender, $phoneNumber);
             }
@@ -145,8 +148,9 @@ class MemberController
         // echo "Cake Lovers Dating!";
     }
 
-    function summary()
+    function summary($db, $member)
     {
+        $db->insertMember($member);
         //Display summary
         $view = new Template();
         echo $view->render('views/summary.html');
