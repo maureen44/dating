@@ -6,6 +6,8 @@ class PremiumMember extends Member
     private $_outDoorInterests;
     private $_imageUpload;
 
+
+
     /**
      * PremiumMember constructor.
      * @param $fname
@@ -13,14 +15,32 @@ class PremiumMember extends Member
      * @param $age
      * @param $gender
      * @param $phone
+     * @param $image
      * @param $inDoorInterests
      * @param $outDoorInterests
      */
-    public function __construct($fname, $lname, $age, $gender, $phone, $image, $inDoorInterests = "?", $outDoorInterests = "?")
+    public function __construct($fname, $lname, $age, $gender, $phone, $image = "?", $inDoorInterests = "?", $outDoorInterests = "?")
     {
-        parent::__construct($fname, $lname, $age, $gender, $phone);
+        parent::__construct($fname, $lname, $age, $gender, $phone, $image);
         $this->_inDoorInterests = $inDoorInterests;
         $this->_outDoorInterests = $outDoorInterests;
+        $this->_imageUpload = $image;
+    }
+
+    /**
+     * @return string
+     */
+    public function getImageUpload()
+    {
+        return $this->_imageUpload;
+    }
+
+    /**
+     * @param string $imageUpload
+     */
+    public function setImageUpload($imageUpload)
+    {
+        $this->_imageUpload = $imageUpload;
     }
 
     /**

@@ -103,7 +103,7 @@ class DatingDatabase
         $statement->bindParam(':seeking', $member->getSeeking());
         $statement->bindParam(':bio', $member->getBio());
         $statement->bindParam(':premium', $member->getPremium());
-        //$statement->bindParam(':image', $member->getImage());
+        $statement->bindParam(':image', $member->getImageUpload());
 
 
 

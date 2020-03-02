@@ -79,12 +79,12 @@ $f3->route('GET|POST /interests', function ($f3)
 });
 
 //Define a summary route
-$f3->route('GET /summary', function($f3) {
+$f3->route('GET|POST /summary', function($f3) {
 
     global $db;
     global $controller;
-    $controller->add($db, $_SESSION['Member']);
-   /* $GLOBALS['controller']->summary();*/
+    $controller->summary($db, $_SESSION['Member']);
+   /* $GLOBALS['controller']->summary($db, $_SESSION['Member']);*/
 
     session_destroy();
     $_SESSION = array();

@@ -10,6 +10,23 @@ class Member
     private $_age;
     private $_gender;
     private $_phone;
+    private $_premium;
+
+    /**
+     * @return mixed
+     */
+    public function getPremium()
+    {
+        return $this->_premium;
+    }
+
+    /**
+     * @param mixed $premium
+     */
+    public function setPremium($premium)
+    {
+        $this->_premium = $premium;
+    }
     private $_email;
     private $_state;
     private $_seeking;
@@ -22,14 +39,16 @@ class Member
      * @param $age
      * @param $gender
      * @param $phone
+     * @param $premium
      */
-    public function __construct($fname, $lname, $age, $gender, $phone)
+    public function __construct($fname, $lname, $age, $gender, $phone, $premium)
     {
         $this->_fname = $fname;
         $this->_lname = $lname;
         $this->_age = $age;
         $this->_gender = $gender;
         $this->_phone = $phone;
+        $this->_premium = $premium;
     }
 
     /**
