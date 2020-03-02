@@ -40,7 +40,9 @@ class MemberController
             $this->_f3->set('gender', $gender);
             $this->_f3->set('phoneNumber', $phoneNumber);
             $this->_f3->set('checkbox1', checkbox);
-            $this->_f3->set('imageUpload', $image);
+            if ($_SESSION['checkbox'] == 1) {
+                $this->_f3->set('imageUpload', $image);
+            }
 
 
             $checkbox1 = isset($_POST['checkbox']);
